@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bouncy Ball</title>
+    <style></style>
+</head>
+
+<body>
+<canvas id='gameCanvas' width="400" height="400"></canvas>
+
+
+<script>
+    //declare variabels and load canvas
+    const fps=30
+    var ballSize=30
+    var ball_x,ball_y
+    var ball_y_velocity,ball_x_velocity
+    var canvas=document.getElementById('gameCanvas')
+    var context=canvas.getContext("2d")
+
+    //setup game loop
+    setInterval(update,30)
+
+    ball_x=canvas.width/2
+    ball_y=canvas.height/2
+
+    ball_x_velocity=Math.floor(Math.random()*100+20)/fps
+    ball_y_velocity=Math.floor(Math.random()*100+20)/fps
+
+    if(Math.random()<0.5){ball_x_velocity=-ball_x_velocity}
+    if(Math.random()<0.5){ball_y_velocity=-ball_y_velocity}
+
+
+
+    function update(){
+        //move ball
+        ball_x+=ball_x_velocity
+        ball_y+=ball_y_velocity
+
+        //draw again
+        context.fillStyle='red'
+        context.fillRect(0,0,canvas.width,canvas.height)
+        context.fillStyle='black'
+        context.fillRect(ball_x - ballSize/2, ball_y - ballSize/2, ballSize, ballSize)
+
+        //hit walls
+        if(ball_x-ballSize/2<0 && ball_x_velocity<0){
+            ball_x_velocity=-ball_x_velocity
+        }
+        if(ball_x+ballSize/2>canvas.width && ball_x_velocity>0){
+            ball_x_velocity=-ball_x_velocity
+        }
+
+        if(ball_y-ballSize/2<0 && ball_y_velocity<0){
+            ball_y_velocity=-ball_y_velocity
+        }
+        if(ball_y+ballSize/2>canvas.width && ball_y_velocity>0){
+            ball_y_velocity=-ball_y_velocity
+        }
+
+    }
+
+
+
+</script>
+</body>
+
+</html>

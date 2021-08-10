@@ -1,16 +1,8 @@
-
-
-var rotate = function(matrix) {
-    let rows = colums = matrix.length;
-    for (let i=0;i<rows;i++) {
-        for (let j=i;j<colums;j++) {
-            let temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
-        }
-         matrix[i]  =  matrix[i].reverse()
-    }
-    console.log(matrix)
+class foo{
+    #a=1;
+    b=2
 }
-
-rotate([[1,2,3],[4,5,6],[7,8,9]])
+const o=new foo()
+o.a++
+o.b++
+console.log(o.a)
